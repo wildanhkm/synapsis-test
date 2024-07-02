@@ -13,7 +13,7 @@ const pages = [
   },
   {
     name: 'Users',
-    link: '/blog/create', //todo create users page
+    link: '/users', //todo create users page
   },
 ];
 
@@ -45,12 +45,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Suspense fallback={<p>Loading...</p>}>
-          <header className="bg-white dark:bg-black flex gap-12 p-12">
+          <header className="bg-white dark:bg-gray-700 flex gap-12 p-12">
             <button
               onClick={toggleTheme}
-              className="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded text-black dark:text-white"
+              className="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 bg-white rounded text-black dark:text-white"
             >
-              {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
             {pages.map((page) => (
               <Link

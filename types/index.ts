@@ -6,9 +6,17 @@ export type BlogPostType = {
 };
 
 export type CommentType = {
-  body: string
-  email: string
+  body: string;
+  email: string;
   id: number;
-  name: string
+  name: string;
   post_id: number;
+};
+
+export type UserType = {
+  id: number;
+  name: string;
+  email: string;
+  gender: string;
+  status: string;
 };

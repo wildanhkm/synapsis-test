@@ -6,9 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 type PaginationControlsProps = {
   hasNextPage: boolean;
   hasPrevPage: boolean;
+  pageName: string | "/"
 };
 
-const PaginationControls: FC<PaginationControlsProps> = ({ hasNextPage, hasPrevPage }) => {
+const PaginationControls: FC<PaginationControlsProps> = ({ hasNextPage, hasPrevPage, pageName }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get('page') ?? '1';
@@ -22,7 +23,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({ hasNextPage, hasPrevP
         }`}
         disabled={!hasPrevPage}
         onClick={() => {
-          router.push(`/?page=${Number(page) - 1}&per_page=${perPage}`);
+          router.push(`${pageName}?page=${Number(page) - 1}&per_page=${perPage}`);
         }}
       >
         &lt;
@@ -38,7 +39,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({ hasNextPage, hasPrevP
         }`}
         disabled={!hasNextPage}
         onClick={() => {
-          router.push(`/?page=${Number(page) + 1}&per_page=${perPage}`);
+          router.push(`${pageName}?page=${Number(page) + 1}&per_page=${perPage}`);
         }}
       >
         &gt;

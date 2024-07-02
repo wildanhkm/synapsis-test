@@ -83,7 +83,7 @@ const CreatePost: FC = (props: Props) => {
   };
 
   return (
-    <main className="bg-white dark:bg-black flex min-h-screen flex-col gap-4 px-36 py-12 font-inter">
+    <main className="bg-white dark:bg-gray-700 flex min-h-screen flex-col gap-4 px-36 py-12 font-inter">
       <h1 className="text-black dark:text-white font-bold text-xl text-center">Create New Blog Post</h1>
       <input
         className="text-black border border-black rounded dark:text-white dark:bg-transparent dark:border-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500 focus:border-blue-500"
@@ -101,7 +101,7 @@ const CreatePost: FC = (props: Props) => {
         onChange={handleInputChange}
       ></textarea>
       <div className="flex gap-4">
-        <Link href="/" className="bg-white dark:bg-black text-black dark:text-white rounded border p-2 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <Link href="/" className="bg-white dark:bg-gray-700 text-black dark:text-white rounded border p-2 hover:bg-slate-100 dark:hover:bg-slate-800">
           Cancel
         </Link>
         <button className="rounded border p-2 bg-blue-500 hover:bg-blue-700" onClick={onSave}>

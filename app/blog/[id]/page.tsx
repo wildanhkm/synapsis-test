@@ -1,14 +1,13 @@
 'use client';
 import axios from '@/lib/axios';
 import { BlogPostType, CommentType } from '@/types';
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FC, useEffect, useState, useCallback } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
-import ProfileImage from '@/app/components/ProfileImage';
+import ProfileImage from '@/app/components/base/ProfileImage';
 
 const Loading = () => {
   return (
@@ -46,7 +45,6 @@ const Post: FC = () => {
       const { data: comments } = await axios.get<CommentType[]>(`/public/v2/posts/${id}/comments`);
       setPost(data);
       setComments(comments);
-      console.log('comments :>> ', comments);
       setError(null);
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
@@ -79,7 +77,7 @@ const Post: FC = () => {
   };
 
   return (
-    <main className="bg-white dark:bg-black flex min-h-screen flex-col gap-4 px-36 py-12 font-inter">
+    <main className="bg-white dark:bg-gray-700 flex min-h-screen flex-col gap-4 px-36 py-12 font-inter">
       {loading ? (
         <Loading />
       ) : error ? (
@@ -90,20 +88,6 @@ const Post: FC = () => {
             <div className="flex flex-col gap-4">
               <h1 className="font-bold text-xl text-black dark:text-white">{post?.title}</h1>
               <p className="text-black dark:text-white">{post?.body}</p>
-              {/* <div className="flex gap-4">
-                <Link
-                  href={`/blog/${id}/edit`}
-                  className="bg-white dark:bg-black text-black dark:text-white rounded border p-2 hover:bg-slate-100 dark:hover:bg-slate-800"
-                >
-                  Edit
-                </Link>
-                <button
-                  className="rounded border p-2 bg-red-500 hover:bg-red-700"
-                  onClick={onDelete}
-                >
-                  Delete
-                </button>
-              </div> */}
             </div>
             <div className="flex flex-col gap-8">
               <p className="text-black dark:text-white text-lg font-bold">
