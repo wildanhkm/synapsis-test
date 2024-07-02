@@ -41,6 +41,7 @@ const Post: FC = () => {
   const getPost = useCallback(async () => {
     try {
       setLoading(true);
+      console.log('axios :>> ', (await axios('/public/v2/posts')).headers);
       const { data } = await axios.get<BlogPostType>(`/public/v2/posts/${id}`);
       const { data: comments } = await axios.get<CommentType[]>(`/public/v2/posts/${id}/comments`);
       setPost(data);
@@ -58,23 +59,6 @@ const Post: FC = () => {
   useEffect(() => {
     getPost();
   }, [getPost]);
-
-  const onDelete = () => {
-    withReactContent(Swal)
-      .fire({
-        icon: 'warning',
-        text: 'Are you sure to delete this post?',
-        showCancelButton: true,
-        reverseButtons: true,
-        cancelButtonText: 'Cancel',
-        confirmButtonText: 'Delete',
-      })
-      .then((res) => {
-        if (res.isConfirmed) {
-          deletePost(id);
-        }
-      });
-  };
 
   return (
     <main className="bg-white dark:bg-gray-700 flex min-h-screen flex-col gap-4 px-36 py-12 font-inter">
